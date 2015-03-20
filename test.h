@@ -7,6 +7,7 @@
 #include "md/mdspi.h"
 #include "order/traderspi.h"
 #include "risk/riskspi.h"
+#include <unistd.h>
 //#include "windows.h"
 #include <iostream>
 using namespace std;
@@ -78,19 +79,20 @@ void ShowTraderCommand(CtpTraderSpi* p, bool print=false){
   ShowTraderCommand(p);
 }
 
+char  instIdList[100];
 
 void ShowMdCommand(CtpMdSpi* p, bool print=false){
   if(print){
     cerr<<"-----------------------------------------------"<<endl;
     cerr<<" [1] ReqUserLogin              -- 登录"<<endl;
     cerr<<" [2] SubscribeMarketData       -- 行情订阅"<<endl;
+    cerr<<" [3] "<<endl;
     cerr<<" [0] Exit                      -- 退出"<<endl;
     cerr<<"----------------------------------------------"<<endl;
   }
   TThostFtdcBrokerIDType appId;
 	TThostFtdcUserIDType	 userId;
 	TThostFtdcPasswordType passwd;
-  char instIdList[100];
 
   int cmd;  cin>>cmd;
   switch(cmd){
@@ -103,6 +105,18 @@ void ShowMdCommand(CtpMdSpi* p, bool print=false){
     case 2: {
               cerr<<" 合约 > "; cin>>instIdList;
               p->SubscribeMarketData(instIdList); break;
+            }
+    case 3: {
+              cerr << "自动开始 ";
+              strcpy(appId, "1");
+              strcpy(userId, "1");
+              strcpy(passwd, "1");
+              sleep(3);
+              p->ReqUserLogin(appId,userId,passwd);
+              sleep(1);
+              strcpy(instIdList,"IF1503,IF1504,IF1506,IF1509");
+              p->SubscribeMarketData(instIdList);
+              break;
             }
     case 0: exit(0);
   }
