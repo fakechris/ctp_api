@@ -1,11 +1,11 @@
 /////////////////////////////////////////////////////////////////////////
-///@system ĞÂÒ»´ú½»Ò×ËùÏµÍ³·çÏÕ¼à¿ØÏµÍ³
-///@company ÉÏº£ÆÚ»õĞÅÏ¢¼¼ÊõÓĞÏŞ¹«Ë¾
+///@system æ–°ä¸€ä»£äº¤æ˜“æ‰€ç³»ç»Ÿé£é™©ç›‘æ§ç³»ç»Ÿ
+///@company ä¸Šæµ·æœŸè´§ä¿¡æ¯æŠ€æœ¯æœ‰é™å…¬å¸
 ///@file FtdcRiskUserApi.h
-///@brief ¶¨ÒåÁË¿Í»§¶Ë½Ó¿Ú
+///@brief å®šä¹‰äº†å®¢æˆ·ç«¯æ¥å£
 ///@history 
 ///@version v{main:6,max:7,server:v5.5.2}
-///20070227	zhangjie		´´½¨¸ÃÎÄ¼ş
+///20070227	zhangjie		åˆ›å»ºè¯¥æ–‡ä»¶
 /////////////////////////////////////////////////////////////////////////
 
 #if !defined(_FTDCRISKUSERAPI_H)
@@ -31,287 +31,287 @@
 class CShfeFtdcRiskUserSpi
 {
 public:
-	///µ±¿Í»§¶ËÓë½»Ò×ºóÌ¨½¨Á¢ÆğÍ¨ĞÅÁ¬½ÓÊ±£¨»¹Î´µÇÂ¼Ç°£©£¬¸Ã·½·¨±»µ÷ÓÃ¡£
+	///å½“å®¢æˆ·ç«¯ä¸äº¤æ˜“åå°å»ºç«‹èµ·é€šä¿¡è¿æ¥æ—¶ï¼ˆè¿˜æœªç™»å½•å‰ï¼‰ï¼Œè¯¥æ–¹æ³•è¢«è°ƒç”¨ã€‚
 	virtual void OnFrontConnected(){};
 	
-	///µ±¿Í»§¶ËÓë½»Ò×ºóÌ¨Í¨ĞÅÁ¬½Ó¶Ï¿ªÊ±£¬¸Ã·½·¨±»µ÷ÓÃ¡£µ±·¢ÉúÕâ¸öÇé¿öºó£¬API»á×Ô¶¯ÖØĞÂÁ¬½Ó£¬¿Í»§¶Ë¿É²»×ö´¦Àí¡£
-	///@param nReason ´íÎóÔ­Òò
-	///        0x1001 ÍøÂç¶ÁÊ§°Ü
-	///        0x1002 ÍøÂçĞ´Ê§°Ü
-	///        0x2001 ½ÓÊÕĞÄÌø³¬Ê±
-	///        0x2002 ·¢ËÍĞÄÌøÊ§°Ü
-	///        0x2003 ÊÕµ½´íÎó±¨ÎÄ
+	///å½“å®¢æˆ·ç«¯ä¸äº¤æ˜“åå°é€šä¿¡è¿æ¥æ–­å¼€æ—¶ï¼Œè¯¥æ–¹æ³•è¢«è°ƒç”¨ã€‚å½“å‘ç”Ÿè¿™ä¸ªæƒ…å†µåï¼ŒAPIä¼šè‡ªåŠ¨é‡æ–°è¿æ¥ï¼Œå®¢æˆ·ç«¯å¯ä¸åšå¤„ç†ã€‚
+	///@param nReason é”™è¯¯åŸå› 
+	///        0x1001 ç½‘ç»œè¯»å¤±è´¥
+	///        0x1002 ç½‘ç»œå†™å¤±è´¥
+	///        0x2001 æ¥æ”¶å¿ƒè·³è¶…æ—¶
+	///        0x2002 å‘é€å¿ƒè·³å¤±è´¥
+	///        0x2003 æ”¶åˆ°é”™è¯¯æŠ¥æ–‡
 	virtual void OnFrontDisconnected(int nReason){};
 		
-	///ĞÄÌø³¬Ê±¾¯¸æ¡£µ±³¤Ê±¼äÎ´ÊÕµ½±¨ÎÄÊ±£¬¸Ã·½·¨±»µ÷ÓÃ¡£
-	///@param nTimeLapse ¾àÀëÉÏ´Î½ÓÊÕ±¨ÎÄµÄÊ±¼ä
+	///å¿ƒè·³è¶…æ—¶è­¦å‘Šã€‚å½“é•¿æ—¶é—´æœªæ”¶åˆ°æŠ¥æ–‡æ—¶ï¼Œè¯¥æ–¹æ³•è¢«è°ƒç”¨ã€‚
+	///@param nTimeLapse è·ç¦»ä¸Šæ¬¡æ¥æ”¶æŠ¥æ–‡çš„æ—¶é—´
 	virtual void OnHeartBeatWarning(int nTimeLapse){};
 	
 
-	///´íÎóÓ¦´ğ
+	///é”™è¯¯åº”ç­”
 	virtual void OnRspError(CShfeFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {};
 
-	///Ï¯Î»×Ê½ğ»Ø±¨
+	///å¸­ä½èµ„é‡‘å›æŠ¥
 	virtual void OnRtnBrokerDeposit(CShfeFtdcBrokerDepositField *pBrokerDeposit) {};
 
-	///¿Í»§¶Ë½áËã×éÊı¾İÍ¬²½¿ªÊ¼
+	///å®¢æˆ·ç«¯ç»“ç®—ç»„æ•°æ®åŒæ­¥å¼€å§‹
 	virtual void OnRtnClientSGDataSyncStart(CShfeFtdcSettlementSessionField *pSettlementSession) {};
 
-	///¿Í»§¶Ë½áËã×éÊı¾İÍ¬²½½áÊø
+	///å®¢æˆ·ç«¯ç»“ç®—ç»„æ•°æ®åŒæ­¥ç»“æŸ
 	virtual void OnRtnClientSGDataSyncEnd(CShfeFtdcSettlementSessionField *pSettlementSession) {};
 
-	///µÇÂ¼ÇëÇóÏìÓ¦
+	///ç™»å½•è¯·æ±‚å“åº”
 	virtual void OnRspRiskUserLogin(CShfeFtdcRspRiskUserLoginField *pRspRiskUserLogin, CShfeFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {};
 
-	///²úÆ·ĞÅÏ¢
+	///äº§å“ä¿¡æ¯
 	virtual void OnRtnProduct(CShfeFtdcProductField *pProduct) {};
 
-	///ºÏÔ¼ĞÅÏ¢
+	///åˆçº¦ä¿¡æ¯
 	virtual void OnRtnInstrument(CShfeFtdcInstrumentField *pInstrument) {};
 
-	///²éÑ¯±¨µ¥ÅÅÃûÓ¦´ğ
+	///æŸ¥è¯¢æŠ¥å•æ’ååº”ç­”
 	virtual void OnRspQryOrderStat(CShfeFtdcOrderStatField *pOrderStat, CShfeFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {};
 
-	///½»Ò×ËùµÄ»ù±¾ĞÅÏ¢
+	///äº¤æ˜“æ‰€çš„åŸºæœ¬ä¿¡æ¯
 	virtual void OnRtnExchange(CShfeFtdcExchangeField *pExchange) {};
 
-	///·ç¿ØÉî¶ÈĞĞÇéÍ¨Öª
+	///é£æ§æ·±åº¦è¡Œæƒ…é€šçŸ¥
 	virtual void OnRtnRiskDepthMarketData(CShfeFtdcDepthMarketDataField *pDepthMarketData) {};
 
-	///Ê±¼äÍ¬²½
+	///æ—¶é—´åŒæ­¥
 	virtual void OnRtnTimeSync(CShfeFtdcCurrentTimeField *pCurrentTime) {};
 
-	///ºÏÔ¼³Ö²Ö±ÈÀıÓ¦´ğ
+	///åˆçº¦æŒä»“æ¯”ä¾‹åº”ç­”
 	virtual void OnRspInstPositionRate(CShfeFtdcRspInstPositionRateField *pRspInstPositionRate, CShfeFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {};
 
-	///²úÆ·³Ö²Ö±ÈÀıÓ¦´ğ
+	///äº§å“æŒä»“æ¯”ä¾‹åº”ç­”
 	virtual void OnRspProductPositionRate(CShfeFtdcRspProductPositionRateField *pRspProductPositionRate, CShfeFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {};
 
-	///Í¶×ÊÕß×é
+	///æŠ•èµ„è€…ç»„
 	virtual void OnRtnInvestorGroup(CShfeFtdcInvestorGroupField *pInvestorGroup) {};
 
-	///¾­¼Í¹«Ë¾ºÏÔ¼±£Ö¤½ğÂÊ£¬É¾³ıÔòÓÃRtnDelInstrumentMarginRate
+	///ç»çºªå…¬å¸åˆçº¦ä¿è¯é‡‘ç‡ï¼Œåˆ é™¤åˆ™ç”¨RtnDelInstrumentMarginRate
 	virtual void OnRtnInstrumentMarginRate(CShfeFtdcInstrumentMarginRateField *pInstrumentMarginRate) {};
 
-	///¾­¼Í¹«Ë¾ºÏÔ¼±£Ö¤½ğÂÊµ÷Õû£¬É¾³ıÔòÓÃRtnDelInstrumentMarginRateAdjust
+	///ç»çºªå…¬å¸åˆçº¦ä¿è¯é‡‘ç‡è°ƒæ•´ï¼Œåˆ é™¤åˆ™ç”¨RtnDelInstrumentMarginRateAdjust
 	virtual void OnRtnInstrumentMarginRateAdjust(CShfeFtdcInstrumentMarginRateAdjustField *pInstrumentMarginRateAdjust) {};
 
-	///½»Ò×Ëù±£Ö¤½ğÂÊ£¬É¾³ıÔòÓÃRtnDelRtnExchangeMarginRate
+	///äº¤æ˜“æ‰€ä¿è¯é‡‘ç‡ï¼Œåˆ é™¤åˆ™ç”¨RtnDelRtnExchangeMarginRate
 	virtual void OnRtnExchangeMarginRate(CShfeFtdcExchangeMarginRateField *pExchangeMarginRate) {};
 
-	///½»Ò×Ëù±£Ö¤½ğÂÊµ÷Õû£¬É¾³ıÔòÓÃRtnDelRtnExchangeMarginRateAdjust
+	///äº¤æ˜“æ‰€ä¿è¯é‡‘ç‡è°ƒæ•´ï¼Œåˆ é™¤åˆ™ç”¨RtnDelRtnExchangeMarginRateAdjust
 	virtual void OnRtnExchangeMarginRateAdjust(CShfeFtdcExchangeMarginRateAdjustField *pExchangeMarginRateAdjust) {};
 
-	///ÓĞĞòµÄ¾­¼Í¹«Ë¾ÓÃ»§ÊÂ¼ş»Ø±¨£¬¶ÔÓ¦¶©ÔÄÇëÇóReqSubBrokerUserEvent
+	///æœ‰åºçš„ç»çºªå…¬å¸ç”¨æˆ·äº‹ä»¶å›æŠ¥ï¼Œå¯¹åº”è®¢é˜…è¯·æ±‚ReqSubBrokerUserEvent
 	virtual void OnRtnSequencialBrokerUserEvent(CShfeFtdcSequencialBrokerUserEventField *pSequencialBrokerUserEvent) {};
 
-	///ÓĞĞòµÄ³É½»»Ø±¨£¬¶ÔÓ¦¶©ÔÄÇëÇóReqSubscribeTrade
+	///æœ‰åºçš„æˆäº¤å›æŠ¥ï¼Œå¯¹åº”è®¢é˜…è¯·æ±‚ReqSubscribeTrade
 	virtual void OnRtnSequencialTrade(CShfeFtdcSequencialTradeField *pSequencialTrade) {};
 
-	///ÓĞĞòµÄ±¨µ¥»Ø±¨£¬¶ÔÓ¦¶©ÔÄÇëÇóReqSubscribeOrder
+	///æœ‰åºçš„æŠ¥å•å›æŠ¥ï¼Œå¯¹åº”è®¢é˜…è¯·æ±‚ReqSubscribeOrder
 	virtual void OnRtnSequencialOrder(CShfeFtdcSequencialOrderField *pSequencialOrder) {};
 
-	///·ç¿Ø±¨µ¥Â¼ÈëÇëÇóÏìÓ¦
+	///é£æ§æŠ¥å•å½•å…¥è¯·æ±‚å“åº”
 	virtual void OnRspRiskOrderInsert(CShfeFtdcInputOrderField *pInputOrder, CShfeFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {};
 
-	///·ç¿Ø±¨µ¥²Ù×÷ÇëÇóÏìÓ¦
+	///é£æ§æŠ¥å•æ“ä½œè¯·æ±‚å“åº”
 	virtual void OnRspRiskOrderAction(CShfeFtdcInputOrderActionField *pInputOrderAction, CShfeFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {};
 
-	///ÓĞĞòµÄ³Ö²Ö»Ø±¨£¬¶ÔÓ¦¶©ÔÄÇëÇóReqSubscribePosition
+	///æœ‰åºçš„æŒä»“å›æŠ¥ï¼Œå¯¹åº”è®¢é˜…è¯·æ±‚ReqSubscribePosition
 	virtual void OnRtnSequencialPosition(CShfeFtdcSequencialPositionField *pSequencialPosition) {};
 
-	///×éÖ¯¼Ü¹¹
+	///ç»„ç»‡æ¶æ„
 	virtual void OnRtnDepartment(CShfeFtdcDepartmentField *pDepartment) {};
 
-	///·ç¿ØÔ¤Âñµ¥Â¼ÈëÓ¦´ğ
+	///é£æ§é¢„åŸ‹å•å½•å…¥åº”ç­”
 	virtual void OnRspRiskParkedOrderInsert(CShfeFtdcRiskParkedOrderField *pRiskParkedOrder, CShfeFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {};
 
-	///É¾³ıÔ¤Âñµ¥ÏìÓ¦
+	///åˆ é™¤é¢„åŸ‹å•å“åº”
 	virtual void OnRspRemoveRiskParkedOrder(CShfeFtdcRemoveRiskParkedOrderField *pRemoveRiskParkedOrder, CShfeFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {};
 
-	///ÓĞĞòµÄ·ç¿ØÔ¤Âñµ¥»Ø±¨
+	///æœ‰åºçš„é£æ§é¢„åŸ‹å•å›æŠ¥
 	virtual void OnRtnSeqRiskParkedOrder(CShfeFtdcSeqRiskParkedOrderField *pSeqRiskParkedOrder) {};
 
-	///·ç¿ØÓÃ»§ÃÜÂëĞŞ¸ÄÓ¦´ğ
+	///é£æ§ç”¨æˆ·å¯†ç ä¿®æ”¹åº”ç­”
 	virtual void OnRspRiskUserPasswordUpd(CShfeFtdcUserPasswordUpdateField *pUserPasswordUpdate, CShfeFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {};
 
-	///ÓĞĞòµÄ³öÈë½ğ»Ø±¨£¬¶ÔÓ¦¶©ÔÄÇëÇóReqSubSeqDeposit
+	///æœ‰åºçš„å‡ºå…¥é‡‘å›æŠ¥ï¼Œå¯¹åº”è®¢é˜…è¯·æ±‚ReqSubSeqDeposit
 	virtual void OnRtnSeqDeposit(CShfeFtdcSeqDepositField *pSeqDeposit) {};
 
-	///ÓĞĞòµÄ½»Ò×±àÂë»Ø±¨£¬¶ÔÓ¦¶©ÔÄÇëÇóReqSubSeqTradingCode
+	///æœ‰åºçš„äº¤æ˜“ç¼–ç å›æŠ¥ï¼Œå¯¹åº”è®¢é˜…è¯·æ±‚ReqSubSeqTradingCode
 	virtual void OnRtnSeqTradingCode(CShfeFtdcSeqTradingCodeField *pSeqTradingCode) {};
 
-	///Í¶×ÊÕß»ù´¡ĞÅÏ¢»Ø±¨£¬Ö»Í¬²½ÅÌÖĞ±ä»¯Êı¾İ£¬¿ÉÒÔÅäºÏ{ReqQryInvestorLinkMan,RspQryInvestorLinkMan}Ê¹ÓÃ
+	///æŠ•èµ„è€…åŸºç¡€ä¿¡æ¯å›æŠ¥ï¼ŒåªåŒæ­¥ç›˜ä¸­å˜åŒ–æ•°æ®ï¼Œå¯ä»¥é…åˆ{ReqQryInvestorLinkMan,RspQryInvestorLinkMan}ä½¿ç”¨
 	virtual void OnRtnRiskInvestor(CShfeFtdcRiskSyncInvestorField *pRiskSyncInvestor) {};
 
-	///²éÑ¯Í¶×ÊÕßºÍÁªÏµÈËĞÅÏ¢Ó¦´ğ
+	///æŸ¥è¯¢æŠ•èµ„è€…å’Œè”ç³»äººä¿¡æ¯åº”ç­”
 	virtual void OnRspQryInvestorLinkMan(CShfeFtdcInvestorLinkManField *pInvestorLinkMan, CShfeFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {};
 
-	///É¾³ı¾­¼Í¹«Ë¾ºÏÔ¼±£Ö¤½ğÂÊ
+	///åˆ é™¤ç»çºªå…¬å¸åˆçº¦ä¿è¯é‡‘ç‡
 	virtual void OnRtnDelInstrumentMarginRate(CShfeFtdcInstrumentMarginRateField *pInstrumentMarginRate) {};
 
-	///É¾³ı¾­¼Í¹«Ë¾ºÏÔ¼±£Ö¤½ğÂÊµ÷Õû
+	///åˆ é™¤ç»çºªå…¬å¸åˆçº¦ä¿è¯é‡‘ç‡è°ƒæ•´
 	virtual void OnRtnDelInstrumentMarginRateAdjust(CShfeFtdcInstrumentMarginRateAdjustField *pInstrumentMarginRateAdjust) {};
 
-	///É¾³ı½»Ò×Ëù±£Ö¤½ğÂÊ
+	///åˆ é™¤äº¤æ˜“æ‰€ä¿è¯é‡‘ç‡
 	virtual void OnRtnDelExchangeMarginRate(CShfeFtdcExchangeMarginRateField *pExchangeMarginRate) {};
 
-	///É¾³ı½»Ò×Ëù±£Ö¤½ğÂÊµ÷Õû
+	///åˆ é™¤äº¤æ˜“æ‰€ä¿è¯é‡‘ç‡è°ƒæ•´
 	virtual void OnRtnDelExchangeMarginRateAdjust(CShfeFtdcExchangeMarginRateAdjustField *pExchangeMarginRateAdjust) {};
 
-	///²éÑ¯×éÖ¯¼Ü¹¹Í¶×ÊÕß¶ÔÓ¦¹ØÏµÓ¦´ğ
+	///æŸ¥è¯¢ç»„ç»‡æ¶æ„æŠ•èµ„è€…å¯¹åº”å…³ç³»åº”ç­”
 	virtual void OnRspQryInvestorDepartment(CShfeFtdcInvestorDepartmentFlatField *pInvestorDepartmentFlat, CShfeFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {};
 
-	///·µ»ØÍ¶×ÊÕß×éÖ¯¼Ü¹¹HashÖµ
+	///è¿”å›æŠ•èµ„è€…ç»„ç»‡æ¶æ„Hashå€¼
 	virtual void OnRtnInvestorDepartmentHash(CShfeFtdcInvestorLinkManHashField *pInvestorLinkManHash) {};
 
-	///Í¶×ÊÕßµ±ÈÕ×Ê½ğ»Ø±¨£»×òÈÕ×Ê½ğÊ¹ÓÃ{ReqSubPreRiskAccount,RtnSeqPreRiskAccount}
+	///æŠ•èµ„è€…å½“æ—¥èµ„é‡‘å›æŠ¥ï¼›æ˜¨æ—¥èµ„é‡‘ä½¿ç”¨{ReqSubPreRiskAccount,RtnSeqPreRiskAccount}
 	virtual void OnRtnRiskSyncAccount(CShfeFtdcRiskSyncAccountField *pRiskSyncAccount) {};
 
-	///ÓĞĞòµÄ×òÈÕ×Ê½ğ»Ø±¨£¬¶ÔÓ¦¶©ÔÄÇëÇóReqSubPreRiskAccount
+	///æœ‰åºçš„æ˜¨æ—¥èµ„é‡‘å›æŠ¥ï¼Œå¯¹åº”è®¢é˜…è¯·æ±‚ReqSubPreRiskAccount
 	virtual void OnRtnSeqPreRiskAccount(CShfeFtdcSeqPreRiskAccountField *pSeqPreRiskAccount) {};
 
-	///ÓĞĞòµÄÒµÎñÍ¨Öª»Ø±¨
+	///æœ‰åºçš„ä¸šåŠ¡é€šçŸ¥å›æŠ¥
 	virtual void OnRtnSeqBizNotice(CShfeFtdcSeqBizNoticeField *pSeqBizNotice) {};
 
-	///²éÑ¯Ï¯Î»×Ê½ğÓ¦´ğ
+	///æŸ¥è¯¢å¸­ä½èµ„é‡‘åº”ç­”
 	virtual void OnRspRiskQryBrokerDeposit(CShfeFtdcQueryBrokerDepositField *pQueryBrokerDeposit, CShfeFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {};
 
-	///ÓĞĞòµÄ·çÏÕÍ¨Öª»Ø±¨°æ±¾B£¬¶ÔÓ¦¶©ÔÄÇëÇóReqSubSeqRiskNotifyB
+	///æœ‰åºçš„é£é™©é€šçŸ¥å›æŠ¥ç‰ˆæœ¬Bï¼Œå¯¹åº”è®¢é˜…è¯·æ±‚ReqSubSeqRiskNotifyB
 	virtual void OnRtnSeqRiskNotifyB(CShfeFtdcSeqRiskNotifyBField *pSeqRiskNotifyB) {};
 
-	///²éÑ¯³Ö²ÖÅÅÃûÓ¦´ğ
+	///æŸ¥è¯¢æŒä»“æ’ååº”ç­”
 	virtual void OnRspQryPositionStat(CShfeFtdcPositionStatField *pPositionStat, CShfeFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {};
 
-	///²éÑ¯³É½»ÅÅÃûÓ¦´ğ
+	///æŸ¥è¯¢æˆäº¤æ’ååº”ç­”
 	virtual void OnRspQryTradeStat(CShfeFtdcTradeStatField *pTradeStat, CShfeFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {};
 
-	///Í¶×ÊÕß¼°ÁªÏµÈËĞÅÏ¢¹şÏ£Öµ²éÑ¯Ó¦´ğ
+	///æŠ•èµ„è€…åŠè”ç³»äººä¿¡æ¯å“ˆå¸Œå€¼æŸ¥è¯¢åº”ç­”
 	virtual void OnRspInvestorLinkManHash(CShfeFtdcInvestorLinkManHashField *pInvestorLinkManHash, CShfeFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {};
 };
 
 class RISKUSER_API_EXPORT CShfeFtdcRiskUserApi
 {
 public:
-	///´´½¨RiskUserApi
-	///@param pszFlowPath ´æÖü¶©ÔÄĞÅÏ¢ÎÄ¼şµÄÄ¿Â¼£¬Ä¬ÈÏÎªµ±Ç°Ä¿Â¼
-	///@return ´´½¨³öµÄUserApi
+	///åˆ›å»ºRiskUserApi
+	///@param pszFlowPath å­˜è´®è®¢é˜…ä¿¡æ¯æ–‡ä»¶çš„ç›®å½•ï¼Œé»˜è®¤ä¸ºå½“å‰ç›®å½•
+	///@return åˆ›å»ºå‡ºçš„UserApi
 	static CShfeFtdcRiskUserApi *CreateFtdcRiskUserApi(const char *pszFlowPath = "");
 	
-	///É¾³ı½Ó¿Ú¶ÔÏó±¾Éí
-	///@remark ²»ÔÙÊ¹ÓÃ±¾½Ó¿Ú¶ÔÏóÊ±,µ÷ÓÃ¸Ãº¯ÊıÉ¾³ı½Ó¿Ú¶ÔÏó
+	///åˆ é™¤æ¥å£å¯¹è±¡æœ¬èº«
+	///@remark ä¸å†ä½¿ç”¨æœ¬æ¥å£å¯¹è±¡æ—¶,è°ƒç”¨è¯¥å‡½æ•°åˆ é™¤æ¥å£å¯¹è±¡
 	virtual void Release() = 0;
 	
-	///³õÊ¼»¯
-	///@remark ³õÊ¼»¯ÔËĞĞ»·¾³,Ö»ÓĞµ÷ÓÃºó,½Ó¿Ú²Å¿ªÊ¼¹¤×÷
+	///åˆå§‹åŒ–
+	///@remark åˆå§‹åŒ–è¿è¡Œç¯å¢ƒ,åªæœ‰è°ƒç”¨å,æ¥å£æ‰å¼€å§‹å·¥ä½œ
 	virtual void Init() = 0;
 	
-	///µÈ´ı½Ó¿ÚÏß³Ì½áÊøÔËĞĞ
-	///@return Ïß³ÌÍË³ö´úÂë
+	///ç­‰å¾…æ¥å£çº¿ç¨‹ç»“æŸè¿è¡Œ
+	///@return çº¿ç¨‹é€€å‡ºä»£ç 
 	virtual int Join() = 0;
 	
-	///»ñÈ¡µ±Ç°½»Ò×ÈÕ
-	///@retrun »ñÈ¡µ½µÄ½»Ò×ÈÕ
-	///@remark Ö»ÓĞµÇÂ¼³É¹¦ºó,²ÅÄÜµÃµ½ÕıÈ·µÄ½»Ò×ÈÕ
+	///è·å–å½“å‰äº¤æ˜“æ—¥
+	///@retrun è·å–åˆ°çš„äº¤æ˜“æ—¥
+	///@remark åªæœ‰ç™»å½•æˆåŠŸå,æ‰èƒ½å¾—åˆ°æ­£ç¡®çš„äº¤æ˜“æ—¥
 	virtual const char *GetTradingDay() = 0;
 	
-	///×¢²áÇ°ÖÃ»úÍøÂçµØÖ·
-	///@param pszFrontAddress£ºÇ°ÖÃ»úÍøÂçµØÖ·¡£
-	///@remark ÍøÂçµØÖ·µÄ¸ñÊ½Îª£º¡°protocol://ipaddress:port¡±£¬Èç£º¡±tcp://127.0.0.1:17001¡±¡£ 
-	///@remark ¡°tcp¡±´ú±í´«ÊäĞ­Òé£¬¡°127.0.0.1¡±´ú±í·şÎñÆ÷µØÖ·¡£¡±17001¡±´ú±í·şÎñÆ÷¶Ë¿ÚºÅ¡£
+	///æ³¨å†Œå‰ç½®æœºç½‘ç»œåœ°å€
+	///@param pszFrontAddressï¼šå‰ç½®æœºç½‘ç»œåœ°å€ã€‚
+	///@remark ç½‘ç»œåœ°å€çš„æ ¼å¼ä¸ºï¼šâ€œprotocol://ipaddress:portâ€ï¼Œå¦‚ï¼šâ€tcp://127.0.0.1:17001â€ã€‚ 
+	///@remark â€œtcpâ€ä»£è¡¨ä¼ è¾“åè®®ï¼Œâ€œ127.0.0.1â€ä»£è¡¨æœåŠ¡å™¨åœ°å€ã€‚â€17001â€ä»£è¡¨æœåŠ¡å™¨ç«¯å£å·ã€‚
 	virtual void RegisterFront(char *pszFrontAddress) = 0;
 	
-	///×¢²á»Øµ÷½Ó¿Ú
-	///@param pSpi ÅÉÉú×Ô»Øµ÷½Ó¿ÚÀàµÄÊµÀı
+	///æ³¨å†Œå›è°ƒæ¥å£
+	///@param pSpi æ´¾ç”Ÿè‡ªå›è°ƒæ¥å£ç±»çš„å®ä¾‹
 	virtual void RegisterSpi(CShfeFtdcRiskUserSpi *pSpi) = 0;
 	
-	///¶©ÔÄÊĞ³¡ĞĞÇé¡£
-	///@param nTopicID ÊĞ³¡ĞĞÇéÖ÷Ìâ  
-	///@param nResumeType ÊĞ³¡ĞĞÇéÖØ´«·½Ê½  
-	///        TERT_RESTART:´Ó±¾½»Ò×ÈÕ¿ªÊ¼ÖØ´«
-	///        TERT_RESUME:´ÓÉÏ´ÎÊÕµ½µÄĞø´«
-	///        TERT_QUICK:ÏÈ´«ËÍµ±Ç°ĞĞÇé¿ìÕÕ,ÔÙ´«ËÍµÇÂ¼ºóÊĞ³¡ĞĞÇéµÄÄÚÈİ
-	///@remark ¸Ã·½·¨ÒªÔÚInit·½·¨Ç°µ÷ÓÃ¡£Èô²»µ÷ÓÃÔò²»»áÊÕµ½Ë½ÓĞÁ÷µÄÊı¾İ¡£
+	///è®¢é˜…å¸‚åœºè¡Œæƒ…ã€‚
+	///@param nTopicID å¸‚åœºè¡Œæƒ…ä¸»é¢˜  
+	///@param nResumeType å¸‚åœºè¡Œæƒ…é‡ä¼ æ–¹å¼  
+	///        TERT_RESTART:ä»æœ¬äº¤æ˜“æ—¥å¼€å§‹é‡ä¼ 
+	///        TERT_RESUME:ä»ä¸Šæ¬¡æ”¶åˆ°çš„ç»­ä¼ 
+	///        TERT_QUICK:å…ˆä¼ é€å½“å‰è¡Œæƒ…å¿«ç…§,å†ä¼ é€ç™»å½•åå¸‚åœºè¡Œæƒ…çš„å†…å®¹
+	///@remark è¯¥æ–¹æ³•è¦åœ¨Initæ–¹æ³•å‰è°ƒç”¨ã€‚è‹¥ä¸è°ƒç”¨åˆ™ä¸ä¼šæ”¶åˆ°ç§æœ‰æµçš„æ•°æ®ã€‚
 	//virtual void SubscribeMarketDataTopic(int nTopicID, TE_RESUME_TYPE nResumeType) = 0;
 	
-	///µÇÂ¼ÇëÇó
+	///ç™»å½•è¯·æ±‚
 		// changelog
-		// v4.3Ö®Ç° ReqRiskUserLogin.Version=0
-		//	Í¶×ÊÕßĞÅÏ¢½Ó¿Ú: RtnInvestorSumInfo,ReqInvestorRangeSumInfo,RspInvestorRangeSumInfo,ReqInvestorRangeInfo,RspInvestorRangeInfo,RtnRiskInvestorInfo
-		//	Í¶×ÊÕß×éÖ¯¼Ü¹¹½Ó¿Ú: RtnInvestorDepartment
-		//	×Ê½ğ½Ó¿Ú: RtnInvestorAccount
+		// v4.3ä¹‹å‰ ReqRiskUserLogin.Version=0
+		//	æŠ•èµ„è€…ä¿¡æ¯æ¥å£: RtnInvestorSumInfo,ReqInvestorRangeSumInfo,RspInvestorRangeSumInfo,ReqInvestorRangeInfo,RspInvestorRangeInfo,RtnRiskInvestorInfo
+		//	æŠ•èµ„è€…ç»„ç»‡æ¶æ„æ¥å£: RtnInvestorDepartment
+		//	èµ„é‡‘æ¥å£: RtnInvestorAccount
 		//
 		// v4.3	ReqRiskUserLogin.Version=1
-		//	Í¶×ÊÕßĞÅÏ¢½Ó¿Ú: RtnInvestorLinkManHash,ReqQryInvestorLinkMan,RspQryInvestorLinkMan
-		//	Í¶×ÊÕß×éÖ¯¼Ü¹¹½Ó¿Ú: RtnInvestorDepartmentHash,ReqQryInvestorDepartment,RspQryInvestorDepartment
+		//	æŠ•èµ„è€…ä¿¡æ¯æ¥å£: RtnInvestorLinkManHash,ReqQryInvestorLinkMan,RspQryInvestorLinkMan
+		//	æŠ•èµ„è€…ç»„ç»‡æ¶æ„æ¥å£: RtnInvestorDepartmentHash,ReqQryInvestorDepartment,RspQryInvestorDepartment
 		//
 		// v5.0 ReqRiskUserLogin.Version=2
-		//	×Ê½ğ½Ó¿Ú: ×òÈÕ×Ê½ğ(ReqSubPreRiskAccount,RtnSeqPreRiskAccount),µ±ÈÕ×Ê½ğRtnRiskSyncAccount
+		//	èµ„é‡‘æ¥å£: æ˜¨æ—¥èµ„é‡‘(ReqSubPreRiskAccount,RtnSeqPreRiskAccount),å½“æ—¥èµ„é‡‘RtnRiskSyncAccount
 		//
-		// v5.4.0.1 ²»ÔÙÊ¹ÓÃ×Ö¶ÎReqRiskUserLogin.Version£¬ÌîÈÎºÎÖµ¶Ô³ÌĞò¶¼Ã»ÓĞÓ°Ïì
-		//	µÇÂ¼³É¹¦²»×Ô¶¯·µ»ØRtnInvestorLinkManHash£¬InvestorLinkManµÄMD5ÖµÍ¨¹ı½Ó¿ÚReqInvestorLinkManHash²éÑ¯
+		// v5.4.0.1 ä¸å†ä½¿ç”¨å­—æ®µReqRiskUserLogin.Versionï¼Œå¡«ä»»ä½•å€¼å¯¹ç¨‹åºéƒ½æ²¡æœ‰å½±å“
+		//	ç™»å½•æˆåŠŸä¸è‡ªåŠ¨è¿”å›RtnInvestorLinkManHashï¼ŒInvestorLinkMançš„MD5å€¼é€šè¿‡æ¥å£ReqInvestorLinkManHashæŸ¥è¯¢
 	virtual int ReqRiskUserLogin(CShfeFtdcReqRiskUserLoginField *pReqRiskUserLogin, int nRequestID) = 0;
 
-	///²éÑ¯±¨µ¥ÅÅÃûÇëÇó
+	///æŸ¥è¯¢æŠ¥å•æ’åè¯·æ±‚
 	virtual int ReqQryOrderStat(CShfeFtdcQryStatField *pQryStat, int nRequestID) = 0;
 
-	///¶©ÔÄ·ç¿ØÊµÊ±ĞĞÇé
+	///è®¢é˜…é£æ§å®æ—¶è¡Œæƒ…
 	virtual int ReqSubRiskMarketData(CShfeFtdcSubMarketDataField *pSubMarketData, int SubMarketDataCnt, 
 		int nRequestID) = 0;
 
-	///ÍË¶©·ç¿ØÊµÊ±ĞĞÇé
+	///é€€è®¢é£æ§å®æ—¶è¡Œæƒ…
 	virtual int ReqUnSubRiskMarketData(CShfeFtdcSubMarketDataField *pSubMarketData, int nRequestID) = 0;
 
-	///ºÏÔ¼³Ö²Ö±ÈÀı²éÑ¯
+	///åˆçº¦æŒä»“æ¯”ä¾‹æŸ¥è¯¢
 	virtual int ReqQryInstPositionRate(CShfeFtdcQryInstPositionRateField *pQryInstPositionRate, int QryInstPositionRateCnt, 
 		int nRequestID) = 0;
 
-	///²úÆ·³Ö²Ö±ÈÀı²éÑ¯
+	///äº§å“æŒä»“æ¯”ä¾‹æŸ¥è¯¢
 	virtual int ReqQryProductPositionRate(CShfeFtdcQryProductPositionRateField *pQryProductPositionRate, int nRequestID) = 0;
 
-	///¶©ÔÄÓĞĞòµÄ³É½»£¬¿É¸ù¾İÒÑ½ÓÊÕµÄRtnSequencialTradeÖĞ×î´óµÄUniqSequenceNoÀ´ÊµÏÖĞø¶©
+	///è®¢é˜…æœ‰åºçš„æˆäº¤ï¼Œå¯æ ¹æ®å·²æ¥æ”¶çš„RtnSequencialTradeä¸­æœ€å¤§çš„UniqSequenceNoæ¥å®ç°ç»­è®¢
 	virtual int ReqSubscribeTrade(CShfeFtdcNotifySequenceField *pNotifySequence, int nRequestID) = 0;
 
-	///¶©ÔÄÓĞĞòµÄ³É½»£¬¿É¸ù¾İÒÑ½ÓÊÕµÄRtnSequencialOrderÖĞ×î´óµÄUniqSequenceNoÀ´ÊµÏÖĞø¶©
+	///è®¢é˜…æœ‰åºçš„æˆäº¤ï¼Œå¯æ ¹æ®å·²æ¥æ”¶çš„RtnSequencialOrderä¸­æœ€å¤§çš„UniqSequenceNoæ¥å®ç°ç»­è®¢
 	virtual int ReqSubscribeOrder(CShfeFtdcNotifySequenceField *pNotifySequence, int nRequestID) = 0;
 
-	///¶©ÔÄÓĞĞòµÄ¾­¼Í¹«Ë¾ÓÃ»§ÊÂ¼ş£¬¿É¸ù¾İÒÑ½ÓÊÕµÄRtnSequencialBrokerUserEventÖĞ×î´óµÄUniqSequenceNoÀ´ÊµÏÖĞø¶©
+	///è®¢é˜…æœ‰åºçš„ç»çºªå…¬å¸ç”¨æˆ·äº‹ä»¶ï¼Œå¯æ ¹æ®å·²æ¥æ”¶çš„RtnSequencialBrokerUserEventä¸­æœ€å¤§çš„UniqSequenceNoæ¥å®ç°ç»­è®¢
 	virtual int ReqSubBrokerUserEvent(CShfeFtdcNotifySequenceField *pNotifySequence, int nRequestID) = 0;
 
-	///·ç¿Ø±¨µ¥Â¼ÈëÇëÇó
+	///é£æ§æŠ¥å•å½•å…¥è¯·æ±‚
 	virtual int ReqRiskOrderInsert(CShfeFtdcRiskForceCloseOrderField *pRiskForceCloseOrder, int nRequestID) = 0;
 
-	///·ç¿Ø±¨µ¥²Ù×÷ÇëÇó
+	///é£æ§æŠ¥å•æ“ä½œè¯·æ±‚
 	virtual int ReqRiskOrderAction(CShfeFtdcInputOrderActionField *pInputOrderAction, int nRequestID) = 0;
 
-	///¶©ÔÄÓĞĞòµÄ³Ö²Ö£¬¿É¸ù¾İÒÑ½ÓÊÕµÄRtnSequencialPositionÖĞ×î´óµÄUniqSequenceNoÀ´ÊµÏÖĞø¶©
+	///è®¢é˜…æœ‰åºçš„æŒä»“ï¼Œå¯æ ¹æ®å·²æ¥æ”¶çš„RtnSequencialPositionä¸­æœ€å¤§çš„UniqSequenceNoæ¥å®ç°ç»­è®¢
 	virtual int ReqSubscribePosition(CShfeFtdcNotifySequenceField *pNotifySequence, int nRequestID) = 0;
 
-	///·ç¿ØÔ¤Âñµ¥Â¼ÈëÇëÇó
+	///é£æ§é¢„åŸ‹å•å½•å…¥è¯·æ±‚
 	virtual int ReqRiskParkedOrderInsert(CShfeFtdcRiskParkedOrderField *pRiskParkedOrder, int nRequestID) = 0;
 
-	///ÇëÇóÉ¾³ıÔ¤Âñµ¥
+	///è¯·æ±‚åˆ é™¤é¢„åŸ‹å•
 	virtual int ReqRemoveRiskParkedOrder(CShfeFtdcRemoveRiskParkedOrderField *pRemoveRiskParkedOrder, int nRequestID) = 0;
 
-	///¶©ÔÄÓĞĞòµÄ·ç¿ØÔ¤Âñµ¥
+	///è®¢é˜…æœ‰åºçš„é£æ§é¢„åŸ‹å•
 	virtual int ReqSubRiskParkedOrder(CShfeFtdcNotifySequenceField *pNotifySequence, int nRequestID) = 0;
 
-	///·ç¿ØÓÃ»§ÃÜÂëĞŞ¸ÄÇëÇó
+	///é£æ§ç”¨æˆ·å¯†ç ä¿®æ”¹è¯·æ±‚
 	virtual int ReqRiskUserPasswordUpd(CShfeFtdcUserPasswordUpdateField *pUserPasswordUpdate, int nRequestID) = 0;
 
-	///¶©ÔÄÓĞĞòµÄ³öÈë½ğ£¬¿É¸ù¾İÒÑ½ÓÊÕµÄRtnSeqDepositÖĞ×î´óµÄUniqSequenceNoÀ´ÊµÏÖĞø¶©
+	///è®¢é˜…æœ‰åºçš„å‡ºå…¥é‡‘ï¼Œå¯æ ¹æ®å·²æ¥æ”¶çš„RtnSeqDepositä¸­æœ€å¤§çš„UniqSequenceNoæ¥å®ç°ç»­è®¢
 	virtual int ReqSubSeqDeposit(CShfeFtdcRiskNtfSequenceField *pRiskNtfSequence, int nRequestID) = 0;
 
-	///¶©ÔÄÓĞĞòµÄ½»Ò×±àÂë£¬¿É¸ù¾İÒÑ½ÓÊÕµÄRtnSeqTradingCodeÖĞ×î´óµÄUniqSequenceNoÀ´ÊµÏÖĞø¶©
+	///è®¢é˜…æœ‰åºçš„äº¤æ˜“ç¼–ç ï¼Œå¯æ ¹æ®å·²æ¥æ”¶çš„RtnSeqTradingCodeä¸­æœ€å¤§çš„UniqSequenceNoæ¥å®ç°ç»­è®¢
 	virtual int ReqSubSeqTradingCode(CShfeFtdcRiskNtfSequenceField *pRiskNtfSequence, int nRequestID) = 0;
 
-	///²éÑ¯Í¶×ÊÕßºÍÁªÏµÈËĞÅÏ¢ÇëÇó
-		// Í¶×ÊÕßĞÅÏ¢Êı¾İÁ¿ºÜ´ó£¬Çë¾¡Á¿±ÜÃâÒ»´Î²éÑ¯´óÁ¿Í¶×ÊÕßµÄÍ¶×ÊÕßĞÅÏ¢¡£
-		// ÈçÈ·ÊµĞèÒªËùÓĞÍ¶×ÊÕßĞÅÏ¢Êı¾İ£¬ÔòÇ¿ÁÒ½¨ÒéÔÚ±¾µØ±£´æÊı¾İ£¬È»ºóÃ¿ÌìÖ»²éÑ¯ÓĞ±ä»¯µÄÍ¶×ÊÕßĞÅÏ¢£¬·½·¨ÈçÏÂ£º
-		// µÇÂ¼³É¹¦·¢ËÍÇëÇóReqInvestorLinkManHash(¾ßÌå¼ûº¯Êı×¢ÊÍ)£¬RspInvestorLinkManHash»á½«Í¶×ÊÕßĞÅÏ¢µÄMD5Öµ·Ö¶à¸öÍ¶×ÊÕßÇø¼ä[InvestorIDBeg,InvestorIDEnd]·µ»Ø£¬
-		// ¶ÔÃ¿¸öÇø¼ä£¬Óë±¾µØÏàÍ¬Çø¼äµÄÍ¶×ÊÕßĞÅÏ¢µÄMD5Öµ½øĞĞ±È½Ï£¬Èç¹û²»Ò»ÖÂ£¬ÔÙÇëÇó¸ÃÇø¼äµÄÍ¶×ÊÕßĞÅÏ¢¡£
-		// ½¨Òé½«ËùÓĞĞèÒªÇëÇóµÄÍ¶×ÊÕßÇø¼ä·ÅÔÚÒ»¸öÇëÇó·¢ËÍ¡£
-		// ½«Ò»¸öÍ¶×ÊÕßĞÅÏ¢field¸üĞÂµ½md5µÄË³Ğò£º
+	///æŸ¥è¯¢æŠ•èµ„è€…å’Œè”ç³»äººä¿¡æ¯è¯·æ±‚
+		// æŠ•èµ„è€…ä¿¡æ¯æ•°æ®é‡å¾ˆå¤§ï¼Œè¯·å°½é‡é¿å…ä¸€æ¬¡æŸ¥è¯¢å¤§é‡æŠ•èµ„è€…çš„æŠ•èµ„è€…ä¿¡æ¯ã€‚
+		// å¦‚ç¡®å®éœ€è¦æ‰€æœ‰æŠ•èµ„è€…ä¿¡æ¯æ•°æ®ï¼Œåˆ™å¼ºçƒˆå»ºè®®åœ¨æœ¬åœ°ä¿å­˜æ•°æ®ï¼Œç„¶åæ¯å¤©åªæŸ¥è¯¢æœ‰å˜åŒ–çš„æŠ•èµ„è€…ä¿¡æ¯ï¼Œæ–¹æ³•å¦‚ä¸‹ï¼š
+		// ç™»å½•æˆåŠŸå‘é€è¯·æ±‚ReqInvestorLinkManHash(å…·ä½“è§å‡½æ•°æ³¨é‡Š)ï¼ŒRspInvestorLinkManHashä¼šå°†æŠ•èµ„è€…ä¿¡æ¯çš„MD5å€¼åˆ†å¤šä¸ªæŠ•èµ„è€…åŒºé—´[InvestorIDBeg,InvestorIDEnd]è¿”å›ï¼Œ
+		// å¯¹æ¯ä¸ªåŒºé—´ï¼Œä¸æœ¬åœ°ç›¸åŒåŒºé—´çš„æŠ•èµ„è€…ä¿¡æ¯çš„MD5å€¼è¿›è¡Œæ¯”è¾ƒï¼Œå¦‚æœä¸ä¸€è‡´ï¼Œå†è¯·æ±‚è¯¥åŒºé—´çš„æŠ•èµ„è€…ä¿¡æ¯ã€‚
+		// å»ºè®®å°†æ‰€æœ‰éœ€è¦è¯·æ±‚çš„æŠ•èµ„è€…åŒºé—´æ”¾åœ¨ä¸€ä¸ªè¯·æ±‚å‘é€ã€‚
+		// å°†ä¸€ä¸ªæŠ•èµ„è€…ä¿¡æ¯fieldæ›´æ–°åˆ°md5çš„é¡ºåºï¼š
 		// md5.update((const char *)field.Address, strlen((const char *)field.Address));
 		// md5.update((const char *)field.BrokerID, strlen((const char *)field.BrokerID));
 		// md5.update((const char *)field.IdentifiedCardNo, strlen((const char *)field.IdentifiedCardNo));
@@ -342,8 +342,8 @@ public:
 		// md5.update((const char *)field.OpenDate, strlen((const char *)field.OpenDate));
 		// md5.update((const char *)field.Mobile, strlen((const char *)field.Mobile));
 		// md5.update((const char *)field.EMail, strlen((const char *)field.EMail));
-		// if (field.IsActive == 0) md5.update(×Ö·û0);
-		// else md5.update(×Ö·û1);
+		// if (field.IsActive == 0) md5.update(å­—ç¬¦0);
+		// else md5.update(å­—ç¬¦1);
 		// md5.update((const char *)field.PhoneCountryCode, strlen((const char *)field.PhoneCountryCode));
 		// md5.update((const char *)field.PhoneAreaCode, strlen((const char *)field.PhoneAreaCode));
 		// md5.update((const char *)field.OpenPhoneCountryCode, strlen((const char *)field.OpenPhoneCountryCode));
@@ -357,32 +357,32 @@ public:
 	virtual int ReqQryInvestorLinkMan(CShfeFtdcInvestorIDRangeField *pInvestorIDRange, int InvestorIDRangeCnt, 
 		int nRequestID) = 0;
 	
-	///²éÑ¯×éÖ¯¼Ü¹¹Í¶×ÊÕß¶ÔÓ¦¹ØÏµÇëÇó£¬Ê¹ÓÃ·½·¨ÀàËÆReqQryInvestorLinkMan
+	///æŸ¥è¯¢ç»„ç»‡æ¶æ„æŠ•èµ„è€…å¯¹åº”å…³ç³»è¯·æ±‚ï¼Œä½¿ç”¨æ–¹æ³•ç±»ä¼¼ReqQryInvestorLinkMan
 	virtual int ReqQryInvestorDepartment(CShfeFtdcInvestorIDRangeField *pInvestorIDRange, int InvestorIDRangeCnt, 
 		int nRequestID) = 0;
 
-	///¶©ÔÄÓĞĞòµÄ×òÈÕ×Ê½ğ£¬¿É¸ù¾İÒÑ½ÓÊÕµÄRtnSeqPreRiskAccountÖĞ×î´óµÄUniqSequenceNoÀ´ÊµÏÖĞø¶©£»µ±ÈÕ×Ê½ğÊ¹ÓÃRtnRiskSyncAccount
+	///è®¢é˜…æœ‰åºçš„æ˜¨æ—¥èµ„é‡‘ï¼Œå¯æ ¹æ®å·²æ¥æ”¶çš„RtnSeqPreRiskAccountä¸­æœ€å¤§çš„UniqSequenceNoæ¥å®ç°ç»­è®¢ï¼›å½“æ—¥èµ„é‡‘ä½¿ç”¨RtnRiskSyncAccount
 	virtual int ReqSubPreRiskAccount(CShfeFtdcRiskNtfSequenceField *pRiskNtfSequence, int nRequestID) = 0;
 
-	///¶©ÔÄÓĞĞòÊı¾İÇëÇó
+	///è®¢é˜…æœ‰åºæ•°æ®è¯·æ±‚
 	virtual int ReqSubSeqData(CShfeFtdcRiskNtfSequenceField *pRiskNtfSequence, int nRequestID) = 0;
 
-	///²éÑ¯Ï¯Î»×Ê½ğÇëÇó
+	///æŸ¥è¯¢å¸­ä½èµ„é‡‘è¯·æ±‚
 	virtual int ReqRiskQryBrokerDeposit(CShfeFtdcQueryBrokerDepositField *pQueryBrokerDeposit, int nRequestID) = 0;
 
-	///¶©ÔÄÓĞĞòµÄ·çÏÕÍ¨Öª°æ±¾B£¬¿É¸ù¾İÒÑ½ÓÊÕµÄRtnSeqRiskNotifyBÖĞ×î´óµÄUniqSequenceNoÀ´ÊµÏÖĞø¶©
+	///è®¢é˜…æœ‰åºçš„é£é™©é€šçŸ¥ç‰ˆæœ¬Bï¼Œå¯æ ¹æ®å·²æ¥æ”¶çš„RtnSeqRiskNotifyBä¸­æœ€å¤§çš„UniqSequenceNoæ¥å®ç°ç»­è®¢
 	virtual int ReqSubSeqRiskNotifyB(CShfeFtdcRiskNtfSequenceField *pRiskNtfSequence, int nRequestID) = 0;
 
-	///²éÑ¯³Ö²ÖÅÅÃûÇëÇó
+	///æŸ¥è¯¢æŒä»“æ’åè¯·æ±‚
 	virtual int ReqQryPositionStat(CShfeFtdcQryStatField *pQryStat, int nRequestID) = 0;
 
-	///²éÑ¯³É½»ÅÅÃûÇëÇó
+	///æŸ¥è¯¢æˆäº¤æ’åè¯·æ±‚
 	virtual int ReqQryTradeStat(CShfeFtdcQryStatField *pQryStat, int nRequestID) = 0;
 
-	///Í¶×ÊÕß¼°ÁªÏµÈËĞÅÏ¢¹şÏ£Öµ²éÑ¯ÇëÇó
-		// InvestorIDBeg    ÆğÊ¼Í¶×ÊÕß´úÂë£¬Îª¿Õ±íÊ¾ÓÃ»§È¨ÏŞÏÂµÄ×îĞ¡Í¶×ÊÕß´úÂë
-		// InvestorIdEnd    ½áÊøÍ¶×ÊÕß´úÂë£¬Îª¿Õ±íÊ¾ÓÃ»§È¨ÏŞÏÂµÄ×î´óÍ¶×ÊÕß´úÂë
-		// Èç¹ûInvestorIDBegºÍInvestorIDEnd¶¼Îª¿Õ£¬Ôò·şÎñÆ÷»á×Ô¶¯·Ö¶à¸öÇø¼ä·µ»Ø¹şÏ£Öµ£»·ñÔòÖ»¼ÆËãÇëÇóÇø¼äÒ»¸ö¹şÏ£Öµ
+	///æŠ•èµ„è€…åŠè”ç³»äººä¿¡æ¯å“ˆå¸Œå€¼æŸ¥è¯¢è¯·æ±‚
+		// InvestorIDBeg    èµ·å§‹æŠ•èµ„è€…ä»£ç ï¼Œä¸ºç©ºè¡¨ç¤ºç”¨æˆ·æƒé™ä¸‹çš„æœ€å°æŠ•èµ„è€…ä»£ç 
+		// InvestorIdEnd    ç»“æŸæŠ•èµ„è€…ä»£ç ï¼Œä¸ºç©ºè¡¨ç¤ºç”¨æˆ·æƒé™ä¸‹çš„æœ€å¤§æŠ•èµ„è€…ä»£ç 
+		// å¦‚æœInvestorIDBegå’ŒInvestorIDEndéƒ½ä¸ºç©ºï¼Œåˆ™æœåŠ¡å™¨ä¼šè‡ªåŠ¨åˆ†å¤šä¸ªåŒºé—´è¿”å›å“ˆå¸Œå€¼ï¼›å¦åˆ™åªè®¡ç®—è¯·æ±‚åŒºé—´ä¸€ä¸ªå“ˆå¸Œå€¼
 	virtual int ReqInvestorLinkManHash(CShfeFtdcInvestorIDRangeField *pInvestorIDRange, int nRequestID) = 0;
 
 protected:
