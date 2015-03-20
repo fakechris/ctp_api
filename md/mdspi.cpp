@@ -96,9 +96,17 @@ void CtpMdSpi::OnRtnDepthMarketData(
              CThostFtdcDepthMarketDataField *pDepthMarketData)
 {
   cerr<<" 行情 | 合约:"<<pDepthMarketData->InstrumentID
+    <<" 日期:"<<pDepthMarketData->TradingDay
+    <<" 时间:"<<pDepthMarketData->UpdateTime
+    <<" 毫秒:"<<pDepthMarketData->UpdateMillisec
     <<" 现价:"<<pDepthMarketData->LastPrice
+    <<" 上次结算价:" << pDepthMarketData->PreSettlementPrice
+    <<" 本次结算价:" << pDepthMarketData->SettlementPrice
     <<" 最高价:" << pDepthMarketData->HighestPrice
     <<" 最低价:" << pDepthMarketData->LowestPrice
+    <<" 数量:" << pDepthMarketData->Volume
+    <<" 成交金额:" << pDepthMarketData->Turnover
+    <<" 持仓量:" << pDepthMarketData->OpenInterest
     <<" 卖一价:" << pDepthMarketData->AskPrice1
     <<" 卖一量:" << pDepthMarketData->AskVolume1
     <<" 买一价:" << pDepthMarketData->BidPrice1

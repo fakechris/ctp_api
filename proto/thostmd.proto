@@ -1,0 +1,91 @@
+package ctp;
+
+message MarketData
+{
+  ///交易日
+  required string TradingDay = 1;
+  ///合约代码
+  required string InstrumentID = 2;
+  ///交易所代码
+  optional string ExchangeID = 3;
+  ///合约在交易所的代码
+  optional string ExchangeInstID = 4;
+  ///最新价
+  optional double LastPrice = 5;
+  ///上次结算价
+  optional double PreSettlementPrice = 6;
+  ///昨收盘
+  optional double PreClosePrice = 7;
+  ///昨持仓量
+  optional double PreOpenInterest = 8;
+  ///今开盘
+  optional double	OpenPrice = 9;
+  ///最高价
+  optional double	HighestPrice = 10;
+  ///最低价
+  optional double	LowestPrice = 11;
+  ///数量
+  optional int32	Volume = 12;
+  ///成交金额
+  optional double	Turnover = 13;
+  ///持仓量
+  optional double	OpenInterest = 14;
+  ///今收盘
+  optional double	ClosePrice = 15;
+  ///本次结算价
+  optional double	SettlementPrice = 16;
+  ///涨停板价
+  optional double	UpperLimitPrice = 17;
+  ///跌停板价
+  optional double	LowerLimitPrice = 18;
+  ///昨虚实度
+  optional double	PreDelta = 19;
+  ///今虚实度
+  optional double	CurrDelta = 20;
+  ///最后修改时间
+  optional string	UpdateTime = 21;
+  ///最后修改毫秒
+  optional string	UpdateMillisec = 22;
+  ///申买价一
+  optional double	BidPrice1 = 23;
+  ///申买量一
+  optional int32	BidVolume1 = 24;
+  ///申卖价一
+  optional double	AskPrice1 = 25;
+  ///申卖量一
+  optional int32	AskVolume1 = 26;
+  ///申买价二
+  optional double	BidPrice2 = 27;
+  ///申买量二
+  optional int32	BidVolume2 = 28;
+  ///申卖价二
+  optional double	AskPrice2 = 29;
+  ///申卖量二
+  optional int32	AskVolume2 = 30;
+  ///申买价三
+  optional double	BidPrice3 = 31;
+  ///申买量三
+  optional int32	BidVolume3 = 32;
+  ///申卖价三
+  optional double	AskPrice3 = 33;
+  ///申卖量三
+  optional int32	AskVolume3 = 34;
+  ///申买价四
+  optional double	BidPrice4 = 35;
+  ///申买量四
+  optional int32	BidVolume4 = 36;
+  ///申卖价四
+  optional double	AskPrice4 = 37;
+  ///申卖量四
+  optional int32	AskVolume4 = 38;
+  ///申买价五
+  optional double	BidPrice5 = 39;
+  ///申买量五
+  optional int32	BidVolume5 = 40;
+  ///申卖价五
+  optional double	AskPrice5 = 41;
+  ///申卖量五
+  optional int32	AskVolume5 = 42;
+  ///当日均价
+  optional double	AveragePrice = 43;
+}
