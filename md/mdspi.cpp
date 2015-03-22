@@ -6,6 +6,8 @@
 #include <vector>
 //#include "windows.h"
 
+#include "json.h"
+
 using namespace std;
 #pragma warning(disable : 4996)
 
@@ -92,6 +94,112 @@ void CtpMdSpi::OnRspUnSubMarketData(
   //if(bIsLast)  SetEvent(g_hEvent);
 }
 
+std::string serializeMarketDataJson(CThostFtdcDepthMarketDataField *pDepthMarketData)
+{
+	std::string result;
+	JsonObject obj;
+	// strings
+	obj.insert(JsonString("instrumentId"), JsonString(pDepthMarketData->InstrumentID));
+	obj.insert(JsonString("tradingDay"), JsonString(pDepthMarketData->TradingDay));
+	obj.insert(JsonString("updateTime"), JsonString(pDepthMarketData->UpdateTime));
+	obj.insert(JsonString("updateMillisec"), JsonNumber<int>(pDepthMarketData->UpdateMillisec));
+	// exchange info
+	obj.insert(JsonString("exchangeId"), JsonString(pDepthMarketData->ExchangeID));
+	obj.insert(JsonString("exchangeInstId"), JsonString(pDepthMarketData->ExchangeInstID));
+	// infos
+	obj.insert(JsonString("lastPrice"), JsonNumber<double>(pDepthMarketData->LastPrice));
+	obj.insert(JsonString("preSettlementPrice"), JsonNumber<double>(pDepthMarketData->PreSettlementPrice));
+	obj.insert(JsonString("preClosePrice"), JsonNumber<double>(pDepthMarketData->PreClosePrice));
+	obj.insert(JsonString("preOpenInterest"), JsonNumber<double>(pDepthMarketData->PreOpenInterest));
+	obj.insert(JsonString("openPrice"), JsonNumber<double>(pDepthMarketData->OpenPrice));
+	obj.insert(JsonString("highestPrice"), JsonNumber<double>(pDepthMarketData->HighestPrice));
+	obj.insert(JsonString("lowestPrice"), JsonNumber<double>(pDepthMarketData->LowestPrice));
+	obj.insert(JsonString("volume"), JsonNumber<int>(pDepthMarketData->Volume));
+	obj.insert(JsonString("turnover"), JsonNumber<double>(pDepthMarketData->Turnover));
+	obj.insert(JsonString("openInterest"), JsonNumber<double>(pDepthMarketData->OpenInterest));
+	obj.insert(JsonString("closePrice"), JsonNumber<double>(pDepthMarketData->ClosePrice));
+	obj.insert(JsonString("settlementPrice"), JsonNumber<double>(pDepthMarketData->SettlementPrice));
+	obj.insert(JsonString("upperLimitPrice"), JsonNumber<double>(pDepthMarketData->UpperLimitPrice));
+	obj.insert(JsonString("lowerLimitPrice"), JsonNumber<double>(pDepthMarketData->LowerLimitPrice));
+	obj.insert(JsonString("preDelta"), JsonNumber<double>(pDepthMarketData->PreDelta));
+	obj.insert(JsonString("currDelta"), JsonNumber<double>(pDepthMarketData->CurrDelta));
+  // prices
+	obj.insert(JsonString("bidPrice1"), JsonNumber<double>(pDepthMarketData->BidPrice1));
+	obj.insert(JsonString("bidVolume1"), JsonNumber<int>(pDepthMarketData->BidVolume1));
+	obj.insert(JsonString("askPrice1"), JsonNumber<double>(pDepthMarketData->AskPrice1));
+	obj.insert(JsonString("askVolume1"), JsonNumber<int>(pDepthMarketData->AskVolume1));
+	obj.insert(JsonString("bidPrice2"), JsonNumber<double>(pDepthMarketData->BidPrice2));
+	obj.insert(JsonString("bidVolume2"), JsonNumber<int>(pDepthMarketData->BidVolume2));
+	obj.insert(JsonString("askPrice2"), JsonNumber<double>(pDepthMarketData->AskPrice2));
+	obj.insert(JsonString("askVolume2"), JsonNumber<int>(pDepthMarketData->AskVolume2));
+	obj.insert(JsonString("bidPrice3"), JsonNumber<double>(pDepthMarketData->BidPrice3));
+	obj.insert(JsonString("bidVolume3"), JsonNumber<int>(pDepthMarketData->BidVolume3));
+	obj.insert(JsonString("askPrice3"), JsonNumber<double>(pDepthMarketData->AskPrice3));
+	obj.insert(JsonString("askVolume3"), JsonNumber<int>(pDepthMarketData->AskVolume3));
+	obj.insert(JsonString("bidPrice4"), JsonNumber<double>(pDepthMarketData->BidPrice4));
+	obj.insert(JsonString("bidVolume4"), JsonNumber<int>(pDepthMarketData->BidVolume4));
+	obj.insert(JsonString("askPrice4"), JsonNumber<double>(pDepthMarketData->AskPrice4));
+	obj.insert(JsonString("askVolume4"), JsonNumber<int>(pDepthMarketData->AskVolume4));
+	obj.insert(JsonString("bidPrice5"), JsonNumber<double>(pDepthMarketData->BidPrice5));
+	obj.insert(JsonString("bidVolume5"), JsonNumber<int>(pDepthMarketData->BidVolume5));
+	obj.insert(JsonString("askPrice5"), JsonNumber<double>(pDepthMarketData->AskPrice5));
+	obj.insert(JsonString("askVolume5"), JsonNumber<int>(pDepthMarketData->AskVolume5));
+	//
+	obj.insert(JsonString("averagePrice"), JsonNumber<double>(pDepthMarketData->AveragePrice));
+	return obj.serialize();
+}
+
+std::string serializeMarketDataCSV(CThostFtdcDepthMarketDataField *pDepthMarketData)
+{
+	std::stringstream ss;
+	std::string result;
+	ss << pDepthMarketData->InstrumentID << ","
+		 << pDepthMarketData->TradingDay << ","
+		 << pDepthMarketData->UpdateTime << ","
+		 << pDepthMarketData->UpdateMillisec << ","
+		 << pDepthMarketData->LastPrice << ","
+		 << pDepthMarketData->PreSettlementPrice << ","
+		 << pDepthMarketData->PreClosePrice << ","
+		 << pDepthMarketData->PreOpenInterest << ","
+		 << pDepthMarketData->OpenPrice << ","
+		 << pDepthMarketData->HighestPrice << ","
+		 << pDepthMarketData->LowestPrice << ","
+		 << pDepthMarketData->Volume << ","
+		 << pDepthMarketData->Turnover << ","
+		 << pDepthMarketData->OpenInterest << ","
+		 << pDepthMarketData->ClosePrice << ","
+		 << pDepthMarketData->SettlementPrice << ","
+		 << pDepthMarketData->UpperLimitPrice << ","
+		 << pDepthMarketData->LowerLimitPrice << ","
+		 << pDepthMarketData->PreDelta << ","
+		 << pDepthMarketData->CurrDelta << ","
+		 << pDepthMarketData->BidPrice1 << ","
+		 << pDepthMarketData->BidVolume1 << ","
+		 << pDepthMarketData->AskPrice1 << ","
+		 << pDepthMarketData->AskVolume1 << ","
+		 << pDepthMarketData->BidPrice2 << ","
+		 << pDepthMarketData->BidVolume2 << ","
+		 << pDepthMarketData->AskPrice2 << ","
+		 << pDepthMarketData->AskVolume2 << ","
+		 << pDepthMarketData->BidPrice3 << ","
+		 << pDepthMarketData->BidVolume3 << ","
+		 << pDepthMarketData->AskPrice3 << ","
+		 << pDepthMarketData->AskVolume3 << ","
+		 << pDepthMarketData->BidPrice4 << ","
+		 << pDepthMarketData->BidVolume4 << ","
+		 << pDepthMarketData->AskPrice4 << ","
+		 << pDepthMarketData->AskVolume4 << ","
+		 << pDepthMarketData->BidPrice5 << ","
+		 << pDepthMarketData->BidVolume5 << ","
+		 << pDepthMarketData->AskPrice5 << ","
+		 << pDepthMarketData->AskVolume5 << ","
+		 << pDepthMarketData->AveragePrice << ","
+		 << pDepthMarketData->ExchangeID << ","
+		 << pDepthMarketData->ExchangeInstID << ",," << std::endl;
+	return ss.str();
+}
+
+
 void CtpMdSpi::OnRtnDepthMarketData(
              CThostFtdcDepthMarketDataField *pDepthMarketData)
 {
@@ -112,6 +220,8 @@ void CtpMdSpi::OnRtnDepthMarketData(
     <<" 买一价:" << pDepthMarketData->BidPrice1
     <<" 买一量:" << pDepthMarketData->BidVolume1
     <<" 持仓量:"<< pDepthMarketData->OpenInterest <<endl;
+	cerr << "csv: " << serializeMarketDataCSV(pDepthMarketData) << endl;
+	cerr << "json: " << serializeMarketDataJson(pDepthMarketData) << endl;
 }
 
 bool CtpMdSpi::IsErrorRspInfo(CThostFtdcRspInfoField *pRspInfo)
