@@ -1,11 +1,13 @@
 #include <memory.h>
 #include <stdio.h>
 
-#include "md/mdspi.h"
 #include <iostream>
+#include <fstream>
 #include <vector>
+#include <map>
 //#include "windows.h"
 
+#include "md/mdspi.h"
 #include "json.h"
 
 using namespace std;
@@ -13,6 +15,25 @@ using namespace std;
 
 extern int requestId;
 //extern HANDLE g_hEvent;
+
+map<string, ofstream*> g_files;
+
+void dump(char* instrumentId, char* tradingDay, string content)
+{
+	// check file handle exists
+	string basename("/vagrant/Demo/src/data/");
+	string filename = basename + instrumentId + "_" + tradingDay + ".txt";
+	map<string, ofstream*>::iterator it = g_files.find(filename);
+	if (it == g_files.end()) {
+		ofstream* s1 = new ofstream(filename.c_str(), ios::out);
+		g_files.insert(std::make_pair(filename, s1));
+		(*s1) << content;
+		s1->flush();
+	} else {
+		(*(it->second)) << content;
+		it->second->flush();
+	}
+}
 
 void CtpMdSpi::OnRspError(CThostFtdcRspInfoField *pRspInfo,
 		int nRequestID, bool bIsLast)
@@ -146,7 +167,7 @@ std::string serializeMarketDataJson(CThostFtdcDepthMarketDataField *pDepthMarket
 	obj.insert(JsonString("askVolume5"), JsonNumber<int>(pDepthMarketData->AskVolume5));
 	//
 	obj.insert(JsonString("averagePrice"), JsonNumber<double>(pDepthMarketData->AveragePrice));
-	return obj.serialize();
+	return obj.serialize() + "\n";
 }
 
 std::string serializeMarketDataCSV(CThostFtdcDepthMarketDataField *pDepthMarketData)
@@ -220,8 +241,9 @@ void CtpMdSpi::OnRtnDepthMarketData(
     <<" 买一价:" << pDepthMarketData->BidPrice1
     <<" 买一量:" << pDepthMarketData->BidVolume1
     <<" 持仓量:"<< pDepthMarketData->OpenInterest <<endl;
-	cerr << "csv: " << serializeMarketDataCSV(pDepthMarketData) << endl;
-	cerr << "json: " << serializeMarketDataJson(pDepthMarketData) << endl;
+	//cerr << "csv: " << serializeMarketDataCSV(pDepthMarketData) << endl;
+	//cerr << "json: " << serializeMarketDataJson(pDepthMarketData) << endl;
+	dump(pDepthMarketData->InstrumentID, pDepthMarketData->TradingDay, serializeMarketDataJson(pDepthMarketData));
 }
 
 bool CtpMdSpi::IsErrorRspInfo(CThostFtdcRspInfoField *pRspInfo)
